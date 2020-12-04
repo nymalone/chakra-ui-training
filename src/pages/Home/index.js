@@ -13,12 +13,18 @@ import {
   Badge,
 } from "@chakra-ui/react";
 
+import api from '../../services/api';
+
 const Home = () => {
   const [username, setUserName] = useState("");
+  const [infoUser, setInfoUser] = useState(null);
+  const [repo, setRepo] = useState(null);
 
-  const handleSearch = useCallback(() => {
+
+  const handleSearch = useCallback(async () => {
     if(username) {
-      console.log(username)
+     const { data } = await api.get(`users/${username}`)
+     console.log(data)
     }
   }, [username])
 
